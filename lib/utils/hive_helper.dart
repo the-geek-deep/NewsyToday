@@ -6,7 +6,7 @@ class HiveHelper {
 
   Future<void> saveArticles(List<ArticleModel> articles) async {
     final box = await Hive.openBox(boxName);
-    await box.clear(); // Clear existing articles
+    await box.clear();
     await box.addAll(articles);
     await box.close();
   }
