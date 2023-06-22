@@ -33,4 +33,6 @@ class NewsRepository {
       return news;
     }
   }
+
+  fetchNews() {}
 }
