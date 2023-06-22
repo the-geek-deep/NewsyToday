@@ -19,8 +19,8 @@ class LoginScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () {
-                BlocProvider.of<AuthenticationBloc>(context)
-                    .add(LoginEvent());
+                // Dispatch LoginEvent when login button is pressed
+                BlocProvider.of<AuthenticationBloc>(context).add(LoginEvent());
               },
               child: const Text('Login'),
             ),
@@ -28,6 +28,7 @@ class LoginScreen extends StatelessWidget {
             const Text('Don\'t have an account?'),
             ElevatedButton(
               onPressed: () {
+                // Navigate to the SignupScreen when the Sign Up button is pressed
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => SignupScreen()),

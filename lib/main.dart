@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
             return BlocBuilder<NewsBloc, NewsState>(
               builder: (context, state) {
                 if (state is NewsLoadedState) {
-                  return HomeScreen(articles: state.news);
+                  return HomeScreen(articles: state.articles);
                 } else if (state is NewsErrorState) {
                   return const Scaffold(
                     body: Center(
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
                 }
               },
             );
-          } else if (state is OfflineState) {
+          } else if (state is OfflineScreenState) {
             return OfflineScreen(hiveHelper: HiveHelper());
           } else {
             return const LoginScreen();
@@ -89,3 +89,5 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class OfflineScreenState {
+}

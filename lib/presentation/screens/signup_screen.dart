@@ -2,9 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-
-
 import '../../bloc/authentication/authentication_bloc.dart';
 import '../../bloc/authentication/authentication_event.dart';
 
@@ -24,6 +21,7 @@ class SignupScreen extends StatelessWidget {
 
       final User? user = userCredential.user;
       if (user != null) {
+        // Trigger the login event after successful signup
         // ignore: use_build_context_synchronously
         BlocProvider.of<AuthenticationBloc>(context).add(LoginEvent());
       }
