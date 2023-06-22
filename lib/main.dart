@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: depend_on_referenced_packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -35,7 +36,7 @@ void main() async {
         BlocProvider<NewsBloc>(
           create: (BuildContext context) => NewsBloc(
             newsRepository: NewsRepository(
-              newsApiService: NewsApiService(apiKey: 'YOUR_NEWS_API_KEY', apiUrl: ''),
+              newsApiService: NewsApiService(apiKey: 'API_KEY', apiUrl: ''),
               hiveHelper: hiveHelper,
             ),
           )..add(FetchNewsEvent()),
