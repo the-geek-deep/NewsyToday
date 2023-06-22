@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'authentication_event.dart';
 import 'authentication_state.dart';
 
+
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
-  final FirebaseAuth _firebaseAuth;
+  late final FirebaseAuth _firebaseAuth;
 
-  AuthenticationBloc({required FirebaseAuth firebaseAuth})
-      : _firebaseAuth = firebaseAuth,
+  AuthenticationBloc({FirebaseAuth? firebaseAuth})
+      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         super(AuthenticationInitialState());
 
   Stream<AuthenticationState> mapEventToState(
@@ -41,7 +42,16 @@ class AuthenticationBloc
       } else {
         yield UnauthenticatedState();
       }
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user_disabled') {
+        // Handle specific error code
+        // yield DisabledAccountState();
+      } else {
+        // Handle other FirebaseAuthException cases
+        yield UnauthenticatedState();
+      }
+    } catch (_) {
+      // Handle other generic exceptions
       yield UnauthenticatedState();
     }
   }

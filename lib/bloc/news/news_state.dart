@@ -10,6 +10,8 @@ class NewsLoadedState extends NewsState {
   final List<ArticleModel> articles;
 
   NewsLoadedState({required this.articles, required news});
+
+  get news => null;
 }
 
 class NewsErrorState extends NewsState {
